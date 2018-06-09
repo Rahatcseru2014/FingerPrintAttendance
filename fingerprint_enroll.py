@@ -29,6 +29,16 @@ class FingerPrintScan:
     def save_fingerprint(self):
         self.f.createTemplate()
         return self.f.storeTemplate()
+    
+    def clear_all_fingerprint(self):
+        for i in range(self.f.getTemplateCount()):
+            if self.f.deleteTemplate(i):
+                print('Template deleted - '+str(i))
+    
+    def clear_fingerprint(self,start,end):
+        for i in range(start,end):
+            if self.f.deleteTemplate(i):
+                print('Template deleted - '+str(i))
 
     def save_to_char_buffer(self):
         self.f.convertImage(self.current_buffer)

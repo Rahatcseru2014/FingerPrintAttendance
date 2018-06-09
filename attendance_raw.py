@@ -35,13 +35,14 @@ class Ui_Attendance(QMainWindow):
         
     def on_pushButton_click(self):
         try:
+            self.textBrowser.setText('')
             self.finger_print_module = FingerPrintScan()
             self.finger_print_module.scan_fingerprint()
             self.finger_print_module.save_to_char_buffer()
             if (self.finger_print_module.is_fingerprint_exist()):
-                QMessageBox.about(self, 'Success!', 'Fingerprint is matched with template' + str(self.finger_print_module.get_template_id()))
+                self.textBrowser.setText('Fingerprint is matched with template ' + str(self.finger_print_module.get_template_id()))
             else:
-                QMessageBox.about(self, 'Error!', 'Fingerprint does not exist in database')
+                self.textBrowser.setText('Fingerprint does not exist in database')
         except Exception as e:            
             print('Exception message: ' + str(e))
 
