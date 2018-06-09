@@ -1,4 +1,4 @@
-import time
+import time,os
 from pyfingerprint import PyFingerprint
 import sqlite3
 class FingerPrintScan:
@@ -21,7 +21,7 @@ class FingerPrintScan:
         return positionNumber >= 0
     
     def get_template_id(self):
-        esult = self.f.searchTemplate()
+        result = self.f.searchTemplate()
         positionNumber = result[0]
         print(positionNumber)
         return positionNumber
@@ -35,7 +35,7 @@ class FingerPrintScan:
         self.current_buffer = self.current_buffer + 1
     
     def save_as_image(self,file_name):
-        imageDestination =  '/home/pi/Downloads/FingerPrintAttendance/'+file_name+'.png'
+        imageDestination =  os.getcwd()+'/'+file_name+'.png'
         self.f.downloadImage(imageDestination)                
         
 if __name__ == "__main__":
